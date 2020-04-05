@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cocktail;
+
+import java.util.ArrayList;
 
 /**
  *
@@ -11,80 +8,84 @@ package cocktail;
  */
 public class Blender {
 
-    private double capacity;
-    private Milk m;
-    private Fruits f;
-    private Sugar s;
+    private int capacity;
 
-//Constructors: 
-    public Blender(Milk m, Fruits f, Sugar s) {
-        this.m = m;
-        this.f = f;
-        this.s = s;
-    }
+    private int volume;
 
-    public Blender() {
-    }
+    private int calories;
 
-    public Blender(double capacity) {
+    private ArrayList<Ingredients> ingredients;
+
+    public Blender(int capacity) {
         this.capacity = capacity;
+        this.ingredients = new ArrayList<>();
     }
 
-    //Getters
-    public double getCapacity() {
-        return capacity;
+    public void add(Ingredients ingredient) {
+        this.ingredients.add(ingredient);
     }
 
-    public Milk getM() {
-        return m;
+    public int getVolume() {
+        return this.volume;
     }
 
-    public Fruits getF() {
-        return f;
+    public void blend() {
+
+        for (Ingredients i : this.ingredients) {
+            try {
+                this.volume += i.getVolume();
+
+                if (this.volume > this.capacity) {
+                    throw new Exception("ingredients volume exceeds the Blender capacity");
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+
+            }
+        }
     }
 
-    public Sugar getS() {
-        return s;
+    public Color mixtureFinalColor() {
+        int x = ingredients.size();
+        int r = 0;
+        int g = 0;
+        int b = 0;
+
+        for (Ingredients i : ingredients) {
+            r = +i.getColor().getR();
+            g = +i.getColor().getG();
+            b = +i.getColor().getB();
+        }
+
+        r = r / x;
+        g = g / x;
+        b = b / x;
+        return new Color(r, g, b);
+
     }
 
-    //Methods::
-    public int totalAmountofCalories(Milk m, Fruits f, Sugar s) {
-        return m.getAmountOfCalories() + f.getAmountOfCalories() + s.getAmountOfCalories();
+    public int totalCalories() {
+        for (Ingredients i : this.ingredients) {
+            this.calories = +i.getCalories();
+        }
+        return calories;
     }
 
-    public String cocktailColor(Milk M, Fruits F) {
-        return ""; // LATER
-    }
+    public void pour(Blender b, Cup cup) {
+        try {
+            if (b.getVolume() == 0) {
+                throw new Exception("Blender is Empty");
+            }
 
-    public double cocktailVolume(Milk m, Fruits f) {
-        return 1; // LATER
-    }
+            cup.setVolume(cup.getCapacity());
+            int x = cup.getVolume();
+            cup.setCalories(calories / x);
+            this.volume = -x;
 
-    public String cocktailContains(Blender b) {
-        return b.getF().getName()+b.getM().getName()+ b.getS().getName();
-    }
-    public String getInfo()
-   {
-   return ""; // LATER
-   }
-    
-    //Setters: 
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
-    public void setCapacity(double capacity) {
-        this.capacity = capacity;
+        System.out.println("calories in the cup =" + cup.getCalories());
     }
-
-    public void setM(Milk m) {
-        this.m = m;
-    }
-
-    public void setF(Fruits f) {
-        this.f = f;
-    }
-
-    public void setS(Sugar s) {
-        this.s = s;
-    }
-    
-
 }

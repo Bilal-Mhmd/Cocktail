@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package cocktail;
 
 /**
@@ -10,56 +6,49 @@ package cocktail;
  * @author Bilal
  */
 public abstract class Ingredients {
-//fields: 
-    private String name;
-    private int amountOfCalories;
-   
 
-    //Constructors:
-    public Ingredients() {
-    }
+     private String name;
+     private int calories;
+     Color color;
 
-    public Ingredients(String name, int amountOfCalories) {
+    public  Ingredients(String name, int calories) {
         this.name = name;
-        this.amountOfCalories = amountOfCalories;
+        this.calories = calories;
+        
     }
 
-    public Ingredients(String name) {
+    public Ingredients(String name, int calories, Color color) {
         this.name = name;
+        this.calories = calories;
+        this.color = color;
     }
-
-    public Ingredients(int amountOfCalories) {
-        this.amountOfCalories = amountOfCalories;
-    }
-
-
-   
-       
     
-// Setters:
+
+    public String getName() {
+        return this.name;
+    }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setAmountOfCalories(int amountOfCalories) {
-        this.amountOfCalories = amountOfCalories;
+    public int getCalories() {
+        return this.calories;
     }
 
-   
-//Getters: 
-
-    public String getName() {
-        return name;
+    public void setCalories(int calories) {
+        this.calories = calories;
     }
 
-    public int getAmountOfCalories() {
-        return amountOfCalories;
+    public void setColor(Color color) {
+        this.color = color;
     }
 
+    public Color getColor() {
+        return color;
+    }
     
-
-    //abstract method: getinfo
-    public abstract String getInfo();
-
+    
+    
+    public abstract int getVolume();
 }

@@ -1,59 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package cocktail;
 
 /**
  *
  * @author Bilal
  */
-import java.awt.Color;
 
 public class Fruits extends Ingredients {
 
-    //fields: 
-    public Color color;
-    private double volume;
-
-// Constructors: 
-
-    public Fruits() {
+    private int volume;
+   
+    
+    public Fruits(String name, int calories, int volume, Color color) {
+        super(name, calories, color);
+        this.volume = volume;
+        
     }
 
-    public Fruits(String name, int amountOfCalories, double volume, Color color) {
-        super(name, amountOfCalories);
-        this.color = color;
+
+   
+
+    public void setVolume(int volume) {
         this.volume = volume;
     }
 
-    public Fruits(Color color, double volume) {
-        this.volume = volume;
-        this.color = color;
-    }
-
-//Setters: 
-    public void setVolume(double volume) {
-        this.volume = volume;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-//Getters:
-
-    public double getVolume() {
+   
+    @Override
+    public int getVolume() {
         return volume;
     }
-
-    public Color getColor() {
-        return color;
-    }
-
-    @Override
-    public String getInfo() {
-        return ""; //I will edit it in next phase
-    }
-
+    
 }
