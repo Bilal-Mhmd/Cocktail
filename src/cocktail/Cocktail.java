@@ -5,7 +5,7 @@
  */
 package cocktail;
 
-import java.util.Scanner;
+//import java.util.Scanner;
 
 /**
  *
@@ -22,22 +22,24 @@ public class Cocktail {
         Color white = new Color(255,255,255);
 
         Fruits f1 = new Fruits("Apple", 52, 2, red );
-        Fruits f2 = new Fruits("banana", 60, 2, yellowBanana);
+        Fruits f2 = new Fruits("banana", 60, 8, yellowBanana);
         Milk m1 = new Milk("Milk1", 10,8, white);
         
         Blender b1 = new Blender(10);
         b1.add(f1);
+        b1.add(f2);
         b1.add(m1);
-
-        b1.blend();
+        b1.add(f1);
+        System.out.println(b1.getVolume());
+         b1.blend();
        
-        Cup c1 =new Cup(3);
-        System.out.println(c1.getVolume());
-        b1.pour(b1,c1);
-        System.out.println(c1.getVolume());
+       // Cup c1 =new Cup(3);
+      //  System.out.println(c1.getVolume());
+     //   b1.pour(b1,c1);
+     //   System.out.println(c1.getVolume());
         
         
-        Scanner in = new Scanner(System.in);
+      //  Scanner in = new Scanner(System.in);
 
      
         

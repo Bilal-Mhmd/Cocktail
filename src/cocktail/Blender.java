@@ -22,8 +22,24 @@ public class Blender {
     }
 
     public void add(Ingredients ingredient) {
-        this.ingredients.add(ingredient);
-    }
+       
+        
+            try {
+               
+                if (this.volume > this.capacity) {
+                    throw new Exception("cannot add");
+                }
+                this.ingredients.add(ingredient);
+                this.volume += ingredient.getVolume();
+                
+
+                
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+
+            }
+        }
+  
 
     public int getVolume() {
         return this.volume;
@@ -32,16 +48,12 @@ public class Blender {
     public void blend() {
 
         for (Ingredients i : this.ingredients) {
-            try {
                 this.volume += i.getVolume();
 
-                if (this.volume > this.capacity) {
-                    throw new Exception("ingredients volume exceeds the Blender capacity");
-                }
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-
-            }
+                
+            
+        
+        
         }
     }
 
