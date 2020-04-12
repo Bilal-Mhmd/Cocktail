@@ -1,22 +1,22 @@
-
 package cocktail;
 
-/**
- *
- * @author Bilal
- */
 public class Sugar extends Ingredients {
 
-    public Sugar( int calories)
-    {
-    super("Sugar", calories);
+    private int volume;
+
+    private Color color;
     
+    public Sugar(){
+        super("Sugar", 200);
+        this.volume = 0;
+        this.color = new Color(255,255,255);
     }
     
-    
-    @Override
-    public int getVolume() {
+    public int getVolume(){
         return 0;
     }
     
+    public Color getColor(){
+        return new Color(255,255,255);
+    }
 }

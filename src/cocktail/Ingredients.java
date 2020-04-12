@@ -1,28 +1,16 @@
-
 package cocktail;
 
-/**
- *
- * @author Bilal
- */
 public abstract class Ingredients {
 
-     private String name;
-     private int calories;
-     Color color;
+    private String name;
 
-    public  Ingredients(String name, int calories) {
+    private int calories;
+
+    public Ingredients(String name, int calories) {
         this.name = name;
         this.calories = calories;
         
     }
-
-    public Ingredients(String name, int calories, Color color) {
-        this.name = name;
-        this.calories = calories;
-        this.color = color;
-    }
-    
 
     public String getName() {
         return this.name;
@@ -39,16 +27,8 @@ public abstract class Ingredients {
     public void setCalories(int calories) {
         this.calories = calories;
     }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-    
-    
     
     public abstract int getVolume();
+    
+    public abstract Color getColor();
 }

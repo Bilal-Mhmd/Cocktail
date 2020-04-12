@@ -13,6 +13,10 @@ public class Blender {
     private int volume;
 
     private int calories;
+    
+    private Color color;
+    
+    private double calPerMl;
 
     private ArrayList<Ingredients> ingredients;
 
@@ -21,24 +25,20 @@ public class Blender {
         this.ingredients = new ArrayList<>();
     }
 
-    public void add(Ingredients ingredient) {
-       
-        
-            try {
-               
-                if (this.volume > this.capacity) {
-                    throw new Exception("cannot add");
+    public void add(Ingredients ingredient) throws BlenderOverFlowException {
+      
+                      
+                if (this.volume +ingredient.getVolume() > this.capacity) {
+                    throw new BlenderOverFlowException();
                 }
-                this.ingredients.add(ingredient);
+                else
+                {
+                  this.ingredients.add(ingredient);
+                } 
                 this.volume += ingredient.getVolume();
-                
-
-                
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
 
             }
-        }
+        
   
 
     public int getVolume() {
@@ -46,58 +46,61 @@ public class Blender {
     }
 
     public void blend() {
-
-        for (Ingredients i : this.ingredients) {
-                this.volume += i.getVolume();
-
+                 
+        int totalR=0;
+        int totalG=0;
+        int totalB=0;
+        for (Ingredients ing : this.ingredients) {
+                totalR += ing.getColor().getR();
+                totalG += ing.getColor().getG();
+                totalB += ing.getColor().getB();   
                 
+                this.calories += ing.getCalories();
+        }
+        this.color= new Color(totalR/this.ingredients.size(),totalG/this.ingredients.size(),totalB/this.ingredients.size());
+        this.calPerMl=(double)(this.calories)/(double)(this.volume);
+        
+        this.ingredients.clear();
+    }
+
+    public void pour(Cup cup) throws BlenderIsEmptyException {
+    
+            if(this.volume>0){
+                   if(this.volume<cup.getCapacity())
+                   {  cup.setCalories((int)(this.volume*this.calPerMl));
+                      this.volume=0;     
+                   }
+                   else{
+                   
+                     this.volume-=cup.getCapacity();
+                   }
+                         
+             } else{
+                   throw new BlenderIsEmptyException();
+            }
+              
             
-        
-        
-        }
+            
+            }
+
+    public int getCapacity() {
+        return capacity;
     }
 
-    public Color mixtureFinalColor() {
-        int x = ingredients.size();
-        int r = 0;
-        int g = 0;
-        int b = 0;
-
-        for (Ingredients i : ingredients) {
-            r = +i.getColor().getR();
-            g = +i.getColor().getG();
-            b = +i.getColor().getB();
-        }
-
-        r = r / x;
-        g = g / x;
-        b = b / x;
-        return new Color(r, g, b);
-
-    }
-
-    public int totalCalories() {
-        for (Ingredients i : this.ingredients) {
-            this.calories = +i.getCalories();
-        }
+    public int getCalories() {
         return calories;
     }
 
-    public void pour(Blender b, Cup cup) {
-        try {
-            if (b.getVolume() == 0) {
-                throw new Exception("Blender is Empty");
-            }
-
-            cup.setVolume(cup.getCapacity());
-            int x = cup.getVolume();
-            cup.setCalories(calories / x);
-            this.volume = -x;
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-        System.out.println("calories in the cup =" + cup.getCalories());
+    public Color getColor() {
+        return color;
     }
+
+    public double getCalPerMl() {
+        return calPerMl;
+    }
+             
+                
+
+       
 }
+
