@@ -1,25 +1,31 @@
 package cocktail;
 
+/**
+ *
+ * @author Bilal
+ */
 public class Fruits extends Ingredients {
 
     private int volume;
 
-    private Color color;
-
     public Fruits(String name, int calories, int volume, Color color) {
-        super(name, calories);
+        super(name, calories, color);
         this.volume = volume;
-        this.color = color;
+
     }
 
- 
+    public void setVolume(int volume) {
+        this.volume = volume;
+    }
+
+    @Override
     public int getVolume() {
-        return this.volume;
+        return volume;
     }
 
-    public Color getColor() {
-        return this.color;
+    @Override
+    public String getInfo() {
+        return super.getInfo() + ", volume: " + this.getVolume();
     }
 
-   
 }
