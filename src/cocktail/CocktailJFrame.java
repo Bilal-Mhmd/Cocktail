@@ -235,6 +235,11 @@ public class CocktailJFrame extends javax.swing.JFrame {
             }
         });
 
+        rTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rTextFieldActionPerformed(evt);
+            }
+        });
         rTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 rTextFieldKeyPressed(evt);
@@ -905,6 +910,10 @@ public class CocktailJFrame extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_saveToDbaseButtonActionPerformed
+
+    private void rTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
